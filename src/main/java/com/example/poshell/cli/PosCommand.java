@@ -16,7 +16,7 @@ public class PosCommand {
         this.posService = posService;
     }
 
-    @ShellMethod(value = "List Products", key = "p")
+    @ShellMethod(value = "List Products", key = "l")
     public String products() {
         StringBuilder stringBuilder = new StringBuilder();
         int i = 0;
