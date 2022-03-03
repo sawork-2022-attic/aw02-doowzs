@@ -1,5 +1,9 @@
 # POS in Shell
 
+Asciinema demo：[https://asciinema.org/a/2XchQf8X8nSYHKzsM31yJoYH5](https://asciinema.org/a/2XchQf8X8nSYHKzsM31yJoYH5)
+
+分层逻辑：
+
 - `cli`层负责用户交互，调用业务逻辑层的代码执行指令并打印信息
 - `biz`层负责业务逻辑，实现各种指令的具体逻辑，检验输入数据并执行操作，返回结果给交互层
 - `db`层负责数据访问读写，`InMemoryDB`将数据保存在内存中，可以通过实现接口来将数据保存到数据库或其他地方
