@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 public class Cart {
@@ -11,7 +12,13 @@ public class Cart {
     private List<Item> items = new ArrayList<>();
 
     public boolean addItem(Item item) {
-        return items.add(item);
+        Optional<Item> optionalItem = items.stream().filter(i -> i.getProduct().equals(item.getProduct())).findAny();
+        if (optionalItem.isPresent()) {
+            item.setAmount(item.getAmount() + optionalItem.get().getAmount());
+            return modifyItem(item);
+        } else {
+            return items.add(item);
+        }
     }
 
     public boolean modifyItem(Item item) {
