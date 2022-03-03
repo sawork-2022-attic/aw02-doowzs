@@ -68,12 +68,10 @@ public class PosCommand {
 
     @ShellMethod(value = "Checkout", key = "c")
     public String checkout() {
-        Cart cart = posService.getCart();
-        if (cart == null) {
+        double total = posService.checkout();
+        if (total < 0.0f) {
             return "No cart";
         } else {
-            double total = cart.getTotal();
-            posService.newCart();
             return String.format("Total is %f\nCart cleaned", total);
         }
     }
