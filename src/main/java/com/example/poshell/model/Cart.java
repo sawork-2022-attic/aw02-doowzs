@@ -17,12 +17,19 @@ public class Cart {
             item.setAmount(item.getAmount() + optionalItem.get().getAmount());
             return modifyItem(item);
         } else {
-            return items.add(item);
+            if (item.getAmount() > 0) {
+                items.add(item);
+            }
+            return true;
         }
     }
 
     public boolean modifyItem(Item item) {
-        return items.removeIf(i -> i.getProduct().equals(item.getProduct())) && (item.getAmount() <= 0 || addItem(item));
+        items.removeIf(i -> i.getProduct().equals(item.getProduct()));
+        if (item.getAmount() > 0) {
+            items.add(item);
+        }
+        return true;
     }
 
     public boolean removeItem(Item item) {
